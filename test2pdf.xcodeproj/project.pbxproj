@@ -275,10 +275,14 @@
 		183B395D1675D0E400601054 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Wei Zou (G322CNE2A5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wei Zou (G322CNE2A5)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "test2pdf/test2pdf-Prefix.pch";
 				INFOPLIST_FILE = "test2pdf/test2pdf-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "A3C38F98-12FA-4584-8659-A5DDB07D142D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A3C38F98-12FA-4584-8659-A5DDB07D142D";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -286,10 +290,14 @@
 		183B395E1675D0E400601054 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Wei Zou (G322CNE2A5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wei Zou (G322CNE2A5)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "test2pdf/test2pdf-Prefix.pch";
 				INFOPLIST_FILE = "test2pdf/test2pdf-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "A3C38F98-12FA-4584-8659-A5DDB07D142D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A3C38F98-12FA-4584-8659-A5DDB07D142D";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -313,6 +321,7 @@
 				183B395E1675D0E400601054 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

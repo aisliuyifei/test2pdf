@@ -11,7 +11,9 @@
 #import <MobileCoreServices/UTCoreTypes.h>
 #import <CoreGraphics/CoreGraphics.h>
 #import <CoreText/CoreText.h>
-@interface SCViewController : UIViewController<MFMailComposeViewControllerDelegate>
+@interface SCViewController : UIViewController<MFMailComposeViewControllerDelegate>{
+    IBOutlet UIImageView *imageView;
+}
 
 -(IBAction)buttonClicked:(id)sender;
 -(IBAction)button2Clicked:(id)sender;

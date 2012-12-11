@@ -8,6 +8,7 @@
 
 #import "SCViewController.h"
 #import <QuartzCore/QuartzCore.h>
+NSInteger currentPage = 0;
 @interface SCViewController ()
 
 @end
@@ -73,7 +74,7 @@
     CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString(currentText);
     UIGraphicsBeginPDFContextToData(pdfData, CGRectZero, nil);
     CFRange currentRange = CFRangeMake(0, 0);
-    NSInteger currentPage = 0;
+    
     BOOL done = NO;
     do {
         // Mark the beginning of a new page.
@@ -88,6 +89,8 @@
         if (currentRange.location == CFAttributedStringGetLength((CFAttributedStringRef)currentText))
             done = YES;
     } while (!done);
+    
+    [self renderImageViewInNextPage];
     UIGraphicsEndPDFContext();
     // Release the framewetter.
     CFRelease(framesetter);
@@ -107,16 +110,25 @@
     [controller setToRecipients:[NSArray arrayWithObject:@"wupeng@galiumsoft.com"]];
     NSArray *bccRecipients = [NSArray arrayWithObject:@"stormchaser@foxmail.com"];
     [controller setBccRecipients:bccRecipients];
-    
-    
     [controller addAttachmentData:pdfData mimeType:@"application/pdf" fileName:@"test.pdf"];
-    
-    
     [controller setMessageBody:@"test pdf convert and send：" isHTML:YES];
     [self presentViewController:controller animated:YES completion:nil];
-
-    
 }
+
+-(void)renderImageViewInNextPage{
+    UIGraphicsBeginPDFPageWithInfo(CGRectMake(0, 0, 612, 792), nil);
+    currentPage++;
+    [self drawPageNumber:currentPage];
+//    CGContextRef    currentContext = UIGraphicsGetCurrentContext();
+//    CGContextMoveToPoint(currentContext, 72, 72);
+    [imageView.image drawInRect:CGRectMake(72, 72, 468, 468)];
+    
+    // remove PDF rendering context
+    UIGraphicsEndPDFContext();
+
+
+}
+
 - (CFRange)renderPage:(NSInteger)pageNum withTextRange:(CFRange)currentRange
        andFramesetter:(CTFramesetterRef)framesetter
 {
@@ -155,7 +167,7 @@
     CGSize maxSize = CGSizeMake(612, 72);
     CGSize pageStringSize = [pageString sizeWithFont:theFont
                                    constrainedToSize:maxSize
-                                       lineBreakMode:UILineBreakModeClip];
+                                       lineBreakMode:NSLineBreakByClipping];
     CGRect stringRect = CGRectMake(((612.0 - pageStringSize.width) / 2.0),
                                    720.0 + ((72.0 - pageStringSize.height) / 2.0),
                                    pageStringSize.width,
